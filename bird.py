@@ -64,12 +64,14 @@ class Bird:
             if self.angle > -90:
                 self.angle -= self.SPEED_ROTATION
 
-    def draw(self):
+    def draw(self, screen):
 
         # mudar as imagens do passaro para dar movimento (sempre verificando a contagem imagem)
         """index = [0,1,2,1,0]
         for i in index:
             self.img = self.IMGS[i]"""
+
+        self.count_img += 1
 
         if self.count_img < self.TIME_ANIMATION:
             self.img = self.IMGS[0]
@@ -84,5 +86,17 @@ class Bird:
             self.count_img = 0
 
         # verificar se o passaro esta caindo, caso sim colocar imagem fixa
+        if self.angle <= -80:
+            self.img = self.IMGS[1]
+            self.count_img = self.TIME_ANIMATION * 2
 
-        # desenhar a imagem do passaro
+        # desenhar a imagem do passaro, (pegamos o angulo da imagem depois o centro dela para plotar na tela
+        image_rotate = pygame.transform.rotate(self.img, self.angle)
+        center_image = self.img.get_rect(topleft=(self.x, self.y)).center
+        rectangle = image_rotate.get_rect(center=center_image)
+
+        screen.blit(image_rotate, rectangle.topleft)
+
+    # FUNÇÃO PARA PEGAR A MASCARA DO PASSARO (OS PIXELS DO OBJETO E NÃO DO RETANGULO DA IMAGEM)
+    def get_mask(self):
+        pygame.mask.from_surface(self.img)
