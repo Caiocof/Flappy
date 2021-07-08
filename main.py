@@ -2,7 +2,7 @@ import pygame
 import os
 import random
 
-# CONTANTES DO JOGO
+# CONSTANTES DO JOGO
 WINDOW_WIDTH = 500
 WINDOW_HEIGHT = 800
 

@@ -1,10 +1,11 @@
 import pygame
 import os
-import random
 
 
 # DEFINIÇÕES DA CLASSE PASSARO
 class Bird:
+
+
     IMGS = [
         pygame.transform.scale2x(pygame.image.load(os.path.join('imgs', 'bird1.png'))),
         pygame.transform.scale2x(pygame.image.load(os.path.join('imgs', 'bird2.png'))),
